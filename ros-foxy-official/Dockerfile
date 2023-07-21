@@ -15,7 +15,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     traceroute \
     zip \
     unzip \
-    psmisc
+    psmisc \
+    python3-pip
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ros-foxy-rqt-tf-tree \
@@ -31,7 +32,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ros-foxy-pointcloud-to-laserscan \
     ros-foxy-depthimage-to-laserscan \
     ros-foxy-geographic-msgs \
-    libgeographic-dev
+    libgeographic-dev \
+    ros-foxy-rosbag2-storage-mcap \
+    ros-foxy-geometry2 \
+    ros-foxy-tf2-geometry-msgs \
+    python3-pykdl
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ros-foxy-test-msgs \
@@ -106,6 +111,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ros-foxy-librealsense2
+
+RUN pip install mcap-ros2-support
+RUN pip install geopandas
+RUN pip install pandas
 
 RUN useradd -m docker
 RUN echo "docker:docker" | chpasswd

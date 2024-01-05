@@ -113,14 +113,16 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ros-foxy-librealsense2
 
 RUN pip install mcap-ros2-support
-RUN pip install geopandas
+RUN pip install fiona==1.8.22
 RUN pip install pandas
+RUN pip install geopandas
 
 RUN useradd -m docker
 RUN echo "docker:docker" | chpasswd
 RUN adduser docker sudo
 
 RUN usermod -a -G audio docker
+RUN usermod -a -G dialout docker
 
 USER docker
 
